@@ -42,7 +42,7 @@ jobs:
         java-version: 1.8
     - name: build release
       run: ./gradlew assembleRelease
-    - name: upload artefact to TestApp.io
+    - name: upload artifact to TestApp.io
       uses: testappio/github-action@v1
       with:
         api_token: ${{secrets.TESTAPPIO_API_TOKEN}}
