@@ -2,7 +2,7 @@
 
 > This is in BETA mode. Your feedback is highly appreciated!
 
-[![Workflow to upload apk and ipa to TestApp.io app distribution](https://github.com/testappio/github-action/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/testappio/github-action/actions/workflows/main.yml)
+[![Workflow to upload apk and ipa to TestApp.io app distribution](https://github.com/testappio/github-action/actions/workflows/main.yml/badge.svg)](https://github.com/testappio/github-action/actions/workflows/main.yml)
 
 This action uploads artifacts (.apk or .ipa) to TestApp.io and notifying your team members about it.
 
