@@ -1,0 +1,26 @@
+name: "TestApp.io App Distribution"
+description: "GitHub Action that uploads artifacts to TestApp.io App Distribution"
+author: "Support <support@testapp.io>"
+inputs:
+  api_token:
+    description: "API Token can be claimed from https://portal.testapp.io/settings/api-credentials"
+    required: true
+  app_id:
+    description: "App ID can be found from your app page in https://portal.testapp.io/apps"
+    required: true
+  file:
+    description: "Artifact to upload (.apk or .ipa)"
+    required: true
+  notify:
+    description: "Send notificaitons to team members about this release"
+    required: false
+  debug:
+    description: "Flag that can included to print verbose log output."
+    required: false
+    default: false
+branding:
+  color: "orange"
+  icon: "send"
+runs:
+  using: "docker"
+  image: "Dockerfile"
