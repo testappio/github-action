@@ -14,13 +14,20 @@ inputs:
   notify:
     description: "Send notificaitons to team members about this release"
     required: false
-  debug:
-    description: "Flag that can included to print verbose log output."
-    required: false
-    default: false
 branding:
-  color: "orange"
+  color: "blue"
   icon: "send"
 runs:
-  using: "docker"
-  image: "Dockerfile"
+  using: "composite"
+  steps:
+    - run: curl -Ls https://github.com/testappio/cli/releases/latest/download/install | bash
+      shell: bash
+    - run: chmod +x ${{ github.action_path }}/entrypoint.sh
+      shell: bash
+    - run: sh ${{ github.action_path }}/entrypoint.sh
+      env:
+        INPUT_API_TOKEN: ${{ inputs.api_token }}
+        INPUT_APP_ID: ${{ inputs.app_id }}
+        INPUT_FILE: ${{ inputs.file }}
+        INPUT_NOTIFY: ${{ inputs.notify }}
+      shell: bash

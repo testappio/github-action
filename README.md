@@ -18,36 +18,82 @@ This action uploads artifacts (.apk or .ipa) to TestApp.io and notifying your te
 
 ## Requirements
 
-This action is a docker-based and it will **execute on runners with a Linux operating system**.
+This action will **execute on runners with a Ubuntu & macOS operating systems**.
 
-Read more in Github Actions [documentation](https://docs.github.com/en/actions/creating-actions/about-actions#docker-container-actions) for more info.
-
-## Sample usage
+## Sample usage for Android
 
 ```
-name: Build, code quality, tests
-
-on: [push]
+name: Android adhoc
+on:
+  push:
+    branches:
+      - code-sign
 
 jobs:
-  build:
+  export_android:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: set up JDK 1.8
+
+    - name: Checkout repository
+    - uses: actions/checkout@v2
+
+    - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: build release
+
+    - name: Build release
       run: ./gradlew assembleRelease
-    - name: upload artifact to TestApp.io
-      uses: testappio/github-action@v1
+
+
+    - name: Upload artifact to TestApp.io
+      uses: testappio/github-action@v2
       with:
         api_token: ${{secrets.TESTAPPIO_API_TOKEN}}
         app_id: ${{secrets.TESTAPPIO_APP_ID}}
         file: app/build/outputs/apk/release/app-release-unsigned.apk
-        notify: yes
-        debug: false
+        notify: "yes"
+```
+
+## Sample usage for iOS
+
+```
+name: iOS adhoc
+on:
+  push:
+    branches:
+      - code-sign
+
+jobs:
+  export_ios_with_signing:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build and export iOS
+        uses: yukiarrr/ios-build-action@v1.4.0
+        with:
+          project-path: ios/testappio.xcodeproj
+          workspace-path: ios/testappio.xcworkspace
+          scheme: testappio
+          export-method: ad-hoc
+          configuration: Release
+          output-path: artifacts/output.ipa
+          p12-base64: ${{ secrets.P12_BASE64 }}
+          certificate-password: ${{ secrets.P12_PASSWORD }}
+          mobileprovision-base64: ${{ secrets.ADHOC_MOBILEPROVISION_BASE64 }}
+          code-signing-identity: ${{ secrets.CODE_SIGNING_IDENTITY }}
+          team-id: ${{ secrets.TEAM_ID }}
+
+      - name: Upload artifact to TestApp.io
+        uses: testappio/github-action@v2
+        with:
+          api_token: ${{ secrets.TESTAPPIO_API_TOKEN }}
+          app_id: ${{ secrets.TESTAPPIO_APP_ID }}
+          file: artifacts/output.ipa
+          notify: "yes"
 ```

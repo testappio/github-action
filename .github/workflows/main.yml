@@ -1,15 +1,14 @@
 name: Workflow to upload apk and ipa to TestApp.io app distribution
 on: [push, pull_request, workflow_dispatch]
+
 jobs:
-  run:
+  linux:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v1
       - name: Get sample .apk for test purposes
         run: wget https://github.com/testappio/cli/raw/main/sample-apps/sample-app.apk
-      - name: Get sample .ipa for test purposes
-        run: wget https://github.com/testappio/cli/raw/main/sample-apps/sample-app.ipa
       - name: Upload .apk artifact to TestApp.io app distribution
         uses: ./
         with:
@@ -17,7 +16,14 @@ jobs:
           app_id: ${{secrets.TESTAPPIO_APP_ID}}
           file: sample-app.apk
           notify: "no"
-          debug: true
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Get sample .ipa for test purposes
+        run: wget https://github.com/testappio/cli/raw/main/sample-apps/sample-app.ipa
       - name: Upload .ipa artifact to TestApp.io app distribution
         uses: ./
         with:
@@ -25,4 +31,3 @@ jobs:
           app_id: ${{secrets.TESTAPPIO_APP_ID}}
           file: sample-app.ipa
           notify: "no"
-          debug: true
