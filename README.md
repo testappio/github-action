@@ -68,7 +68,7 @@ on:
 
 jobs:
   export_ios_with_signing:
-    runs-on: macos-latest
+    runs-on: macos-11
 
     steps:
       - name: Checkout repository
@@ -97,6 +97,7 @@ jobs:
           file: artifacts/output.ipa
           notify: "yes"
 ```
+
 ---
 
 ## Feedback & Support
