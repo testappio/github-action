@@ -16,4 +16,4 @@ if [ "$FILE_EXT" = "ipa" ]; then
         IPA_PATH=$FILE
 fi
 
-ta-cli publish --api_token="$INPUT_API_TOKEN" --app_id="$INPUT_APP_ID" --release="$RELEASE" --apk="$APK_PATH" --ipa="$IPA_PATH" --notify="$INPUT_NOTIFY"
+ta-cli publish --api_token="$INPUT_API_TOKEN" --app_id="$INPUT_APP_ID" --release="$RELEASE" --apk="$APK_PATH" --ipa="$IPA_PATH" --release_notes="$INPUT_RELEASE_NOTES" --git_release_notes=$INPUT_GIT_RELEASE_NOTES --git_commit_id=$INPUT_INCLUDE_GIT_COMMIT_ID --notify=$INPUT_NOTIFY --source="Github Action"

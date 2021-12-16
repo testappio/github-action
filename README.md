@@ -1,5 +1,7 @@
 # [<img src="https://assets.testapp.io/logo/blue.svg" alt="TestApp.io"/>](https://testapp.io/) Github Action
 
+### Current version: v3.0-BETA
+
 > This is in BETA mode. Your feedback is highly appreciated!
 
 [![Workflow to upload apk and ipa to TestApp.io app distribution](https://github.com/testappio/github-action/actions/workflows/main.yml/badge.svg)](https://github.com/testappio/github-action/actions/workflows/main.yml)
@@ -14,7 +16,13 @@ This action uploads artifacts (.apk or .ipa) to TestApp.io and notifying your te
 
 > file: artifact to upload (.apk or .ipa)
 
-> notify: **yes** or **no** - to notify your team members in TestApp.io via push notification
+> release_notes: manually add the release notes to be displayed for the testers
+
+> git_release_notes: collect release notes from the the git commit message to be displayed for the testers
+
+> include_git_commit_id: include the last git commit ID in the release notes (works with both release notes option)
+
+> notify: notify your team members via a push notification in TestApp.io mobile app
 
 ## Requirements
 
@@ -49,12 +57,15 @@ jobs:
 
 
     - name: Upload artifact to TestApp.io
-      uses: testappio/github-action@v2
+      uses: testappio/github-action@v3
       with:
         api_token: ${{secrets.TESTAPPIO_API_TOKEN}}
         app_id: ${{secrets.TESTAPPIO_APP_ID}}
         file: app/build/outputs/apk/release/app-release-unsigned.apk
-        notify: "yes"
+        release_notes: ""
+        git_release_notes: true
+        include_git_commit_id: true
+        notify: true
 ```
 
 ## Sample usage for iOS
@@ -90,12 +101,15 @@ jobs:
           team-id: ${{ secrets.TEAM_ID }}
 
       - name: Upload artifact to TestApp.io
-        uses: testappio/github-action@v2
+        uses: testappio/github-action@v3
         with:
           api_token: ${{ secrets.TESTAPPIO_API_TOKEN }}
           app_id: ${{ secrets.TESTAPPIO_APP_ID }}
           file: artifacts/output.ipa
-          notify: "yes"
+          release_notes: "Testing manual release notes..."
+          git_release_notes: false
+          include_git_commit_id: false
+          notify: true
 ```
 
 ---

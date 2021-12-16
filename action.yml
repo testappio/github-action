@@ -11,6 +11,15 @@ inputs:
   file:
     description: "Artifact to upload (.apk or .ipa)"
     required: true
+  release_notes:
+    description: "Release notes will be visible for testers"
+    required: false
+  git_release_notes:
+    description: "Collect the release notes from the last git commit message"
+    required: false
+  include_git_commit_id:
+    description: "Include the last git commit ID with the release notes"
+    required: false
   notify:
     description: "Send notificaitons to team members about this release"
     required: false
@@ -20,7 +29,7 @@ branding:
 runs:
   using: "composite"
   steps:
-    - run: curl -Ls https://github.com/testappio/cli/releases/latest/download/install | bash
+    - run: curl -Ls https://github.com/testappio/cli/releases/download/v1.0.2/install | bash
       shell: bash
     - run: chmod +x ${{ github.action_path }}/entrypoint.sh
       shell: bash
@@ -29,5 +38,8 @@ runs:
         INPUT_API_TOKEN: ${{ inputs.api_token }}
         INPUT_APP_ID: ${{ inputs.app_id }}
         INPUT_FILE: ${{ inputs.file }}
+        INPUT_RELEASE_NOTES: ${{ inputs.release_notes }}
+        INPUT_GIT_RELEASE_NOTES: ${{ inputs.git_release_notes }}
+        INPUT_INCLUDE_GIT_COMMIT_ID: ${{ inputs.include_git_commit_id }}
         INPUT_NOTIFY: ${{ inputs.notify }}
       shell: bash
