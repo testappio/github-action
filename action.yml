@@ -12,7 +12,7 @@ inputs:
     description: "Artifact to upload (.apk or .ipa)"
     required: true
   release_notes:
-    description: "Release notes will be visible for testers"
+    description: "Release notes will be visible for testers and will be on top of git release notes"
     required: false
   git_release_notes:
     description: "Collect the release notes from the last git commit message"
