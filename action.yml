@@ -15,7 +15,7 @@ inputs:
     description: "Release notes will be visible for testers and will be on top of git release notes"
     required: false
   git_release_notes:
-    description: "Collect the release notes from the last git commit message"
+    description: "Automatically collect the release notes from the last git commit message"
     required: false
   include_git_commit_id:
     description: "Include the last git commit ID with the release notes"
