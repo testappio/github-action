@@ -1,6 +1,6 @@
 # [<img src="https://assets.testapp.io/logo/blue.svg" alt="TestApp.io"/>](https://testapp.io/) Github Action
 
-### Current version: v3.0-BETA
+### Current version: v4.0-BETA
 
 > This is in BETA mode. Your feedback is highly appreciated!
 
@@ -57,7 +57,7 @@ jobs:
 
 
     - name: Upload artifact to TestApp.io
-      uses: testappio/github-action@v3
+      uses: testappio/github-action@v4
       with:
         api_token: ${{secrets.TESTAPPIO_API_TOKEN}}
         app_id: ${{secrets.TESTAPPIO_APP_ID}}
@@ -101,7 +101,7 @@ jobs:
           team-id: ${{ secrets.TEAM_ID }}
 
       - name: Upload artifact to TestApp.io
-        uses: testappio/github-action@v3
+        uses: testappio/github-action@v4
         with:
           api_token: ${{ secrets.TESTAPPIO_API_TOKEN }}
           app_id: ${{ secrets.TESTAPPIO_APP_ID }}
