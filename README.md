@@ -116,8 +116,8 @@ jobs:
 
 ## Feedback & Support
 
-Join our [Slack](https://join.slack.com/t/testappio/shared_invite/zt-pvpoj3l2-epGYwGTaV3~3~0f7udNWoA) channel for feedback and support or you can contact us at support@testapp.io and we'll gladly help you out!
+Developers built [TestApp.io](https://testapp.io) to solve the pain of app distribution for mobile app development teams.
 
----
+Join our [Slack](https://join.slack.com/t/testappio/shared_invite/zt-pvpoj3l2-epGYwGTaV3~3~0f7udNWoA) channel for feedback and support.
 
 Happy releasing 🎉
