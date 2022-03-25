@@ -8,21 +8,20 @@
 
 This action uploads artifacts (.apk or .ipa) to TestApp.io and notifying your team members about it.
 
-### Inputs
+## Configuration
 
-> api_token: can be claimed from https://portal.testapp.io/settings/api-credentials
 
-> app_id: can be found from your app page menu
-
-> file: artifact to upload (.apk or .ipa)
-
-> release_notes: manually add the release notes to be displayed for the testers
-
-> git_release_notes: collect release notes from the the git commit message to be displayed for the testers
-
-> include_git_commit_id: include the last git commit ID in the release notes (works with both release notes option)
-
-> notify: notify your team members via a push notification in TestApp.io mobile app
+| Key               | Description                                                                                             | Env Var(s)                  | Default |
+| ----------------- | ------------------------------------------------------------------------------------------------------- | --------------------------- | ------- |
+| api_token         | You can get it from https://portal.testapp.io/settings/api-credentials                                  | TESTAPPIO_API_TOKEN         |         |
+| app_id            | You can get it from your app page at [https://portal.testapp.io/apps](https://portal.testapp.io/apps?select-for-integrations)                                       | TESTAPPIO_APP_ID            |         |
+| release           | It can be either both or Android or iOS                                                                 | TESTAPPIO_RELEASE           |         |
+| apk_file          | Path to the Android APK file                                                                            | TESTAPPIO_ANDROID_PATH      |         |
+| ipa_file          | Path to the iOS IPA file                                                                                | TESTAPPIO_IOS_PATH          |         |
+| release_notes     | Manually add the release notes to be displayed for the testers                                          | TESTAPPIO_RELEASE_NOTES     |         |
+| git_release_notes | Collect release notes from the latest git commit message to be displayed for the testers: true or false | TESTAPPIO_GIT_RELEASE_NOTES | true    |
+| git_commit_id     | Include the last commit ID in the release notes (works with both release notes options): true or false   | TESTAPPIO_GIT_COMMIT_ID     | false   |
+| notify            | Send notifications to your team members about this release: true or false                               | TESTAPPIO_NOTIFY            | false   |
 
 ## Requirements
 
