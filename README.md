@@ -10,6 +10,7 @@ This action uploads artifacts (.apk or .ipa) to TestApp.io and notifying your te
 
 ## Configuration
 
+*More info here: [https://help.testapp.io/ta-cli](https://help.testapp.io/ta-cli/)*
 
 | Key               | Description                                                                                             | Env Var(s)                  | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------- | --------------------------- | ------- |
