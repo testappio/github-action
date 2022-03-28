@@ -1,28 +1,28 @@
 # [<img src="https://assets.testapp.io/logo/blue.svg" alt="TestApp.io"/>](https://testapp.io/) Github Action
 
-### Current version: v4.0-BETA
+### Current version: v5
 
 > This is in BETA mode. Your feedback is highly appreciated!
 
-[![Workflow to upload apk and ipa to TestApp.io app distribution](https://github.com/testappio/github-action/actions/workflows/main.yml/badge.svg)](https://github.com/testappio/github-action/actions/workflows/main.yml)
+[![Workflow to upload APK and IPA to TestApp.io app distribution](https://github.com/testappio/github-action/actions/workflows/main.yml/badge.svg)](https://github.com/testappio/github-action/actions/workflows/main.yml)
 
-This action uploads artifacts (.apk or .ipa) to TestApp.io and notifying your team members about it.
+This action uploads artifacts (.apk or .ipa) to TestApp.io and notifies your team members about it.
 
 ## Configuration
 
-*More info here: [https://help.testapp.io/ta-cli](https://help.testapp.io/ta-cli/)*
+_More info here: [https://help.testapp.io/ta-cli](https://help.testapp.io/ta-cli/)_
 
-| Key               | Description                                                                                             | Env Var(s)                  | Default |
-| ----------------- | ------------------------------------------------------------------------------------------------------- | --------------------------- | ------- |
-| api_token         | You can get it from https://portal.testapp.io/settings/api-credentials                                  | TESTAPPIO_API_TOKEN         |         |
-| app_id            | You can get it from your app page at [https://portal.testapp.io/apps](https://portal.testapp.io/apps?select-for-integrations)                                       | TESTAPPIO_APP_ID            |         |
-| release           | It can be either both or Android or iOS                                                                 | TESTAPPIO_RELEASE           |         |
-| apk_file          | Path to the Android APK file                                                                            | TESTAPPIO_ANDROID_PATH      |         |
-| ipa_file          | Path to the iOS IPA file                                                                                | TESTAPPIO_IOS_PATH          |         |
-| release_notes     | Manually add the release notes to be displayed for the testers                                          | TESTAPPIO_RELEASE_NOTES     |         |
-| git_release_notes | Collect release notes from the latest git commit message to be displayed for the testers: true or false | TESTAPPIO_GIT_RELEASE_NOTES | true    |
-| git_commit_id     | Include the last commit ID in the release notes (works with both release notes options): true or false   | TESTAPPIO_GIT_COMMIT_ID     | false   |
-| notify            | Send notifications to your team members about this release: true or false                               | TESTAPPIO_NOTIFY            | false   |
+| Key               | Description                                                                                                                   | Env Var(s)                  | Default |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ------- |
+| api_token         | You can get it from https://portal.testapp.io/settings/api-credentials                                                        | TESTAPPIO_API_TOKEN         |         |
+| app_id            | You can get it from your app page at [https://portal.testapp.io/apps](https://portal.testapp.io/apps?select-for-integrations) | TESTAPPIO_APP_ID            |         |
+| release           | It can be either both or Android or iOS                                                                                       | TESTAPPIO_RELEASE           |         |
+| apk_file          | Path to the Android APK file                                                                                                  | TESTAPPIO_ANDROID_PATH      |         |
+| ipa_file          | Path to the iOS IPA file                                                                                                      | TESTAPPIO_IOS_PATH          |         |
+| release_notes     | Manually add the release notes to be displayed for the testers                                                                | TESTAPPIO_RELEASE_NOTES     |         |
+| git_release_notes | Collect release notes from the latest git commit message to be displayed for the testers: true or false                       | TESTAPPIO_GIT_RELEASE_NOTES | true    |
+| git_commit_id     | Include the last commit ID in the release notes (works with both release notes options): true or false                        | TESTAPPIO_GIT_COMMIT_ID     | false   |
+| notify            | Send notifications to your team members about this release: true or false                                                     | TESTAPPIO_NOTIFY            | false   |
 
 ## Requirements
 
@@ -57,7 +57,7 @@ jobs:
 
 
     - name: Upload artifact to TestApp.io
-      uses: testappio/github-action@v4
+      uses: testappio/github-action@v5
       with:
         api_token: ${{secrets.TESTAPPIO_API_TOKEN}}
         app_id: ${{secrets.TESTAPPIO_APP_ID}}
@@ -101,7 +101,7 @@ jobs:
           team-id: ${{ secrets.TEAM_ID }}
 
       - name: Upload artifact to TestApp.io
-        uses: testappio/github-action@v4
+        uses: testappio/github-action@v5
         with:
           api_token: ${{ secrets.TESTAPPIO_API_TOKEN }}
           app_id: ${{ secrets.TESTAPPIO_APP_ID }}
