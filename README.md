@@ -55,18 +55,25 @@ jobs:
     - name: Build release
       run: ./gradlew assembleRelease
 
-
-    - name: Upload artifact to TestApp.io
+    - name: Upload IPA to TestApp.io
       uses: testappio/github-action@v5
       with:
         api_token: ${{secrets.TESTAPPIO_API_TOKEN}}
         app_id: ${{secrets.TESTAPPIO_APP_ID}}
         file: app/build/outputs/apk/release/app-release-unsigned.apk
-        release_notes: ""
+        release_notes: "Testing manual release notes..."
         git_release_notes: true
-        include_git_commit_id: true
+        include_git_commit_id: false
         notify: true
 ```
+
+If you want a debug version, replace the following:
+
+`run: ./gradlew assembleDebug`
+
+`file: app/build/outputs/apk/debug/app-debug.apk`
+
+
 
 ## Sample usage for iOS
 
@@ -100,14 +107,14 @@ jobs:
           code-signing-identity: ${{ secrets.CODE_SIGNING_IDENTITY }}
           team-id: ${{ secrets.TEAM_ID }}
 
-      - name: Upload artifact to TestApp.io
+      - name: Upload APK to TestApp.io
         uses: testappio/github-action@v5
         with:
           api_token: ${{ secrets.TESTAPPIO_API_TOKEN }}
           app_id: ${{ secrets.TESTAPPIO_APP_ID }}
           file: artifacts/output.ipa
           release_notes: "Testing manual release notes..."
-          git_release_notes: false
+          git_release_notes: true
           include_git_commit_id: false
           notify: true
 ```
