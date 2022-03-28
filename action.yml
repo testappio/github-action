@@ -29,7 +29,7 @@ branding:
 runs:
   using: "composite"
   steps:
-    - run: curl -Ls https://github.com/testappio/cli/releases/download/v1.0.3/install | bash
+    - run: curl -Ls https://github.com/testappio/cli/releases/download/v1.0.4/install | bash
       shell: bash
     - run: chmod +x ${{ github.action_path }}/entrypoint.sh
       shell: bash
