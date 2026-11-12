@@ -14,7 +14,7 @@ _More info here: [https://help.testapp.io/ta-cli](https://help.testapp.io/ta-cli
 
 | Key               | Description                                                                                                                          | Env Var(s)                  | Default |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- | ------- |
-| api_token         | You can get it from https://portal.testapp.io/settings/api-credentials                                                               | TESTAPPIO_API_TOKEN         |         |
+| api_token         | You can get it from https://portal.testapp.io/profile/tokens                                                               | TESTAPPIO_API_TOKEN         |         |
 | app_id            | You can get it from your app page at [https://portal.testapp.io/apps](https://portal.testapp.io/apps?action=select-for-integrations) | TESTAPPIO_APP_ID            |         |
 | release           | It can be either both or Android or iOS                                                                                              | TESTAPPIO_RELEASE           |         |
 | file              | Path to the either Android .APK file or iOS .IPA file                                                                                | TESTAPPIO_FILE_PATH         |         |
