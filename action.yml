@@ -29,7 +29,7 @@ branding:
 runs:
   using: "composite"
   steps:
-    - run: curl -fLs https://github.com/testappio/cli/releases/latest/download/install | bash
+    - run: curl -fLs --connect-timeout 10 --max-time 60 https://github.com/testappio/cli/releases/latest/download/install | bash
       shell: bash
     - run: sh "$GITHUB_ACTION_PATH/entrypoint.sh"
       env:

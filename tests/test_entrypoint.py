@@ -12,6 +12,12 @@ ENTRYPOINT = ACTION_DIRECTORY / "entrypoint.sh"
 
 
 class InstallerTest(unittest.TestCase):
+    def test_installer_download_has_time_limits(self):
+        action = (ACTION_DIRECTORY / "action.yml").read_text(encoding="utf-8")
+        installer = next(line for line in action.splitlines() if "- run: curl " in line)
+        self.assertRegex(installer, r"--connect-timeout [1-9]\d*")
+        self.assertRegex(installer, r"--max-time [1-9]\d*")
+
     def test_empty_http_error_stops_the_installer_step(self):
         action = (ACTION_DIRECTORY / "action.yml").read_text(encoding="utf-8")
         installer = next(line.split("run: ", 1)[1] for line in action.splitlines() if line.lstrip().startswith("- run: curl "))
