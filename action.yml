@@ -29,13 +29,11 @@ branding:
 runs:
   using: "composite"
   steps:
-    - run: curl -Ls https://github.com/testappio/cli/releases/latest/download/install | bash
+    - run: curl -fLs --connect-timeout 10 --max-time 60 https://github.com/testappio/cli/releases/latest/download/install | bash
       shell: bash
-    - run: chmod +x ${{ github.action_path }}/entrypoint.sh
-      shell: bash
-    - run: sh ${{ github.action_path }}/entrypoint.sh
+    - run: sh "$GITHUB_ACTION_PATH/entrypoint.sh"
       env:
-        INPUT_API_TOKEN: ${{ inputs.api_token }}
+        TESTAPPIO_API_TOKEN: ${{ inputs.api_token }}
         INPUT_APP_ID: ${{ inputs.app_id }}
         INPUT_FILE: ${{ inputs.file }}
         INPUT_RELEASE_NOTES: ${{ inputs.release_notes }}

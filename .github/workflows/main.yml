@@ -1,14 +1,17 @@
 name: Workflow to upload apk and ipa to TestApp.io app distribution
-on: [push, pull_request, workflow_dispatch]
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
 
 jobs:
   linux:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Get sample .apk for test purposes
-        run: wget https://github.com/testappio/cli/raw/main/sample-apps/sample-app.apk
+        run: curl -fsSL --max-time 60 -o sample-app.apk https://github.com/testappio/fastlane-plugin-testappio/raw/main/fastlane/sample/sample-app.apk
       - name: Upload .apk artifact to TestApp.io app distribution
         uses: ./
         with:
@@ -17,23 +20,23 @@ jobs:
           file: sample-app.apk
           git_release_notes: true
           include_git_commit_id: true
-          release_notes: ""
-          notify: true
+          release_notes: "Action CI test"
+          notify: false
 
   macos:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Get sample .ipa for test purposes
-        run: wget https://github.com/testappio/cli/raw/main/sample-apps/sample-app.ipa
-      - name: Upload .ipa artifact to TestApp.io app distribution
+        uses: actions/checkout@v4
+      - name: Get sample .apk for test purposes (the sample .ipa profile expired in 2022)
+        run: curl -fsSL --max-time 60 -o sample-app.apk https://github.com/testappio/fastlane-plugin-testappio/raw/main/fastlane/sample/sample-app.apk
+      - name: Upload .apk artifact from macOS to TestApp.io app distribution
         uses: ./
         with:
           api_token: ${{secrets.TESTAPPIO_API_TOKEN}}
           app_id: ${{secrets.TESTAPPIO_APP_ID}}
-          file: sample-app.ipa
+          file: sample-app.apk
           git_release_notes: false
           include_git_commit_id: false
-          release_notes: "my release notes here..."
-          notify: true
+          release_notes: "Action CI test"
+          notify: false
