@@ -28,14 +28,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Get sample .ipa for test purposes
-        run: curl -fsSL --max-time 60 -o sample-app.ipa https://github.com/testappio/fastlane-plugin-testappio/raw/main/fastlane/sample/sample-app.ipa
-      - name: Upload .ipa artifact to TestApp.io app distribution
+      - name: Get sample .apk for test purposes (the sample .ipa profile expired in 2022)
+        run: curl -fsSL --max-time 60 -o sample-app.apk https://github.com/testappio/fastlane-plugin-testappio/raw/main/fastlane/sample/sample-app.apk
+      - name: Upload .apk artifact from macOS to TestApp.io app distribution
         uses: ./
         with:
           api_token: ${{secrets.TESTAPPIO_API_TOKEN}}
           app_id: ${{secrets.TESTAPPIO_APP_ID}}
-          file: sample-app.ipa
+          file: sample-app.apk
           git_release_notes: false
           include_git_commit_id: false
           release_notes: "Action CI test"

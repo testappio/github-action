@@ -11,7 +11,7 @@ class WorkflowTest(unittest.TestCase):
         workflow = WORKFLOW.read_text(encoding='utf-8')
         self.assertRegex(workflow, r'(?m)^on:\n  workflow_dispatch:\n  push:\n    branches: \[main\]\n\njobs:$')
         base = 'https://github.com/testappio/fastlane-plugin-testappio/raw/main/fastlane/sample'
-        for job, extension in [('linux', 'apk'), ('macos', 'ipa')]:
+        for job, extension in [('linux', 'apk'), ('macos', 'apk')]:
             with self.subTest(job=job):
                 match = re.search(rf'(?ms)^  {job}:\n(.*?)(?=^  [a-z]+:|\Z)', workflow)
                 self.assertIsNotNone(match)
